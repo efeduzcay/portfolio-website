@@ -187,11 +187,12 @@ function escapeHtml(str) {
         .replace(/"/g, '&quot;');
 }
 
-// The 4 repos to display (order preserved)
+// The 5 repos to display (order preserved)
 const FEATURED_REPOS = [
     'git-brief',
     'process_management',
     'doctor-on-my-phone',
+    'pocketdoctor-gateaway',
     'chrome_spotlight',
 ];
 
@@ -217,6 +218,13 @@ const FALLBACK_PROJECTS = [
         language: 'JavaScript', stargazers_count: 0,
         pushed_at: '2024-09-20T00:00:00Z',
         html_url: 'https://github.com/efeduzcay/doctor-on-my-phone', fork: false,
+    },
+    {
+        name: 'pocketdoctor-gateaway',
+        description: 'PocketDoctor sistemi için dinamik yönlendirme ve Google Gemini API entegrasyonuna sahip Node.js API Gateway projesi.',
+        language: 'JavaScript', stargazers_count: 0,
+        pushed_at: '2026-03-04T00:00:00Z',
+        html_url: 'https://github.com/efeduzcay/pocketdoctor-gateaway', fork: false,
     },
     {
         name: 'chrome_spotlight',
