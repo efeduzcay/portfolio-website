@@ -187,12 +187,13 @@ function escapeHtml(str) {
         .replace(/"/g, '&quot;');
 }
 
-// The 5 repos to display (order preserved)
+// The 6 repos to display (order preserved)
 const FEATURED_REPOS = [
     'git-brief',
     'process_management',
     'doctor-on-my-phone',
     'pocketdoctor-gateaway',
+    'csv-anonymizer',
     'chrome_spotlight',
 ];
 
@@ -225,6 +226,13 @@ const FALLBACK_PROJECTS = [
         language: 'JavaScript', stargazers_count: 0,
         pushed_at: '2026-03-04T00:00:00Z',
         html_url: 'https://github.com/efeduzcay/pocketdoctor-gateaway', fork: false,
+    },
+    {
+        name: 'csv-anonymizer',
+        description: 'CSV Anonmyizer',
+        language: 'Python', stargazers_count: 0,
+        pushed_at: '2026-03-05T14:14:49Z',
+        html_url: 'https://github.com/efeduzcay/csv-anonymizer', fork: false,
     },
     {
         name: 'chrome_spotlight',
