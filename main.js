@@ -131,12 +131,26 @@ function timeAgo(dateStr) {
     return 'Bugün';
 }
 
+// Türkçe, tutarlı açıklamalar (GitHub API açıklaması boş/kısa olduğunda kullanılır)
+const REPO_OVERRIDES = {
+    'oyts': 'Otonom Yangın Tespit Sistemi (BIP 2012): YOLO yapay zeka modeliyle yangın tespiti yapan, Python, Arduino Mega ve ESP32 tabanlı otonom yangın söndürme robotu.',
+    'git-brief': 'GitHub repolarını yapay zeka ile analiz edip Markdown özet üreten Python CLI aracı.',
+    'doctor-on-my-phone': 'Yapay zeka destekli triyaj ve en yakın hastane bulucu özelliklerine sahip sağlık asistanı.',
+    'pocketdoctor-gateaway': 'Cebimdeki Doktor uygulaması için güvenli backend API gateway (Node.js, Google Gemini API).',
+    'diyabet-teshis-projesi': 'Makine öğrenmesi ile diyabet riskini tahmin eden Python projesi.',
+    'ecommerce-test-project-final': 'ASP.NET Core ile geliştirilmiş, katmanlı mimarili e-ticaret uygulaması.',
+    'csv-anonymizer': 'CSV dosyalarındaki hassas verileri anonimleştiren Python aracı.',
+    'process_management': 'Round Robin ve MG-RR süreç zamanlama algoritmalarını karşılaştıran işletim sistemi simülasyonu.',
+    'SmartLibrary': 'Java ile geliştirilmiş kütüphane yönetim sistemi.',
+    'chrome_spotlight': 'Chrome için Spotlight tarzı hızlı komut ve arama eklentisi.',
+};
+
 function buildProjectCard(repo) {
     const lang = repo.language || null;
     const langColor = lang ? getLangColor(lang) : null;
     const stars = repo.stargazers_count || 0;
     const updated = repo.pushed_at ? timeAgo(repo.pushed_at) : '—';
-    const desc = repo.description || 'Açıklama bulunmuyor.';
+    const desc = REPO_OVERRIDES[repo.name] || repo.description || 'Açıklama bulunmuyor.';
 
     return `
     <article class="project-card reveal" role="listitem" aria-label="${repo.name} projesi">
@@ -187,58 +201,80 @@ function escapeHtml(str) {
         .replace(/"/g, '&quot;');
 }
 
-// The 6 repos to display (order preserved)
+// Vitrinde gösterilecek repolar (sıra korunur)
 const FEATURED_REPOS = [
+    'oyts',
     'git-brief',
-    'process_management',
     'doctor-on-my-phone',
     'pocketdoctor-gateaway',
+    'diyabet-teshis-projesi',
+    'ecommerce-test-project-final',
     'csv-anonymizer',
+    'process_management',
+    'SmartLibrary',
     'chrome_spotlight',
 ];
 
-// Fallback if API fails
+// API başarısız olursa yedek liste (açıklamalar REPO_OVERRIDES'tan gelir)
 const FALLBACK_PROJECTS = [
     {
-        name: 'git-brief',
-        description: 'GitHub repolarını LLM ile analiz edip Markdown özet üreten Python CLI aracı.',
+        name: 'oyts',
         language: 'Python', stargazers_count: 0,
-        pushed_at: '2024-10-15T00:00:00Z',
+        pushed_at: '2026-06-18T01:31:22Z',
+        html_url: 'https://github.com/efeduzcay/oyts', fork: false,
+    },
+    {
+        name: 'git-brief',
+        language: 'Python', stargazers_count: 1,
+        pushed_at: '2026-03-04T20:18:46Z',
         html_url: 'https://github.com/efeduzcay/git-brief', fork: false,
     },
     {
-        name: 'process_management',
-        description: 'İşletim sistemi süreç yönetimi simülasyonu.',
-        language: 'C', stargazers_count: 0,
-        pushed_at: '2024-09-01T00:00:00Z',
-        html_url: 'https://github.com/efeduzcay/process_management', fork: false,
-    },
-    {
         name: 'doctor-on-my-phone',
-        description: 'Ses girişi ve en yakın hastane bulucu özelliklerine sahip sağlık asistanı uygulaması.',
-        language: 'JavaScript', stargazers_count: 0,
-        pushed_at: '2024-09-20T00:00:00Z',
+        language: 'JavaScript', stargazers_count: 1,
+        pushed_at: '2026-03-04T20:19:44Z',
         html_url: 'https://github.com/efeduzcay/doctor-on-my-phone', fork: false,
     },
     {
         name: 'pocketdoctor-gateaway',
-        description: 'PocketDoctor sistemi için dinamik yönlendirme ve Google Gemini API entegrasyonuna sahip Node.js API Gateway projesi.',
-        language: 'JavaScript', stargazers_count: 0,
-        pushed_at: '2026-03-04T00:00:00Z',
+        language: 'JavaScript', stargazers_count: 1,
+        pushed_at: '2026-03-04T20:30:08Z',
         html_url: 'https://github.com/efeduzcay/pocketdoctor-gateaway', fork: false,
     },
     {
+        name: 'diyabet-teshis-projesi',
+        language: 'Python', stargazers_count: 1,
+        pushed_at: '2026-04-13T14:51:26Z',
+        html_url: 'https://github.com/efeduzcay/diyabet-teshis-projesi', fork: false,
+    },
+    {
+        name: 'ecommerce-test-project-final',
+        language: 'C#', stargazers_count: 0,
+        pushed_at: '2026-06-18T01:31:23Z',
+        html_url: 'https://github.com/efeduzcay/ecommerce-test-project-final', fork: false,
+    },
+    {
         name: 'csv-anonymizer',
-        description: 'CSV Anonmyizer',
-        language: 'Python', stargazers_count: 0,
+        language: 'Python', stargazers_count: 1,
         pushed_at: '2026-03-05T14:14:49Z',
         html_url: 'https://github.com/efeduzcay/csv-anonymizer', fork: false,
     },
     {
+        name: 'process_management',
+        language: 'Python', stargazers_count: 1,
+        pushed_at: '2026-03-02T17:03:01Z',
+        html_url: 'https://github.com/efeduzcay/process_management', fork: false,
+    },
+    {
+        name: 'SmartLibrary',
+        language: 'Java', stargazers_count: 0,
+        pushed_at: '2026-02-27T09:13:29Z',
+        html_url: 'https://github.com/efeduzcay/SmartLibrary', fork: false,
+    },
+    {
         name: 'chrome_spotlight',
-        description: 'Chrome için Spotlight tarzı hızlı komut ve arama aracı.',
-        language: 'JavaScript', stargazers_count: 0,
-        pushed_at: '2024-08-10T00:00:00Z',
+        language: 'JavaScript', stargazers_count: 1,
+        pushed_at: '2026-03-02T17:02:18Z',
         html_url: 'https://github.com/efeduzcay/chrome_spotlight', fork: false,
     },
 ];

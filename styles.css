@@ -247,6 +247,15 @@ ul, ol { list-style: none; }
   margin-bottom: 1rem;
 }
 
+.hero-role {
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  font-weight: 600;
+  color: var(--clr-text);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+.hero-role span { color: var(--clr-text-muted); font-weight: 400; }
+
 .hero-tagline {
   font-size: 1.1rem;
   color: var(--clr-text-muted);
